@@ -14,8 +14,9 @@ dependencies:
   provider: ^6.0.3
   video_player:
     git:
-      url: git@github.com:ente-io/packages.git
+      url: https://github.com/ente-io/packages.git
       ref: android_video_roation_fix
+      path: packages/video_player/video_player/
   wakelock: ^0.6.2
 
 dev_dependencies:
