@@ -11,15 +11,16 @@ class CupertinoVideoProgressBar extends StatelessWidget {
     this.onDragEnd,
     this.onDragStart,
     this.onDragUpdate,
-    Key? key,
-  })  : colors = colors ?? ChewieProgressColors(),
-        super(key: key);
+    super.key,
+    this.draggableProgressBar = true,
+  }) : colors = colors ?? ChewieProgressColors();
 
   final VideoPlayerController controller;
   final ChewieProgressColors colors;
   final Function()? onDragStart;
   final Function()? onDragEnd;
   final Function()? onDragUpdate;
+  final bool draggableProgressBar;
 
   @override
   Widget build(BuildContext context) {
@@ -32,6 +33,7 @@ class CupertinoVideoProgressBar extends StatelessWidget {
       onDragEnd: onDragEnd,
       onDragStart: onDragStart,
       onDragUpdate: onDragUpdate,
+      draggableProgressBar: draggableProgressBar,
     );
   }
 }

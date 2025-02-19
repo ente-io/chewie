@@ -1,23 +1,24 @@
-import 'package:chewie/src/animated_play_pause.dart';
 import 'package:flutter/material.dart';
 
-class CenterPlayButton extends StatelessWidget {
-  const CenterPlayButton({
+class CenterSeekButton extends StatelessWidget {
+  const CenterSeekButton({
     super.key,
+    required this.iconData,
     required this.backgroundColor,
     this.iconColor,
     required this.show,
-    required this.isPlaying,
-    required this.isFinished,
+    this.fadeDuration = const Duration(milliseconds: 300),
+    this.iconSize = 26,
     this.onPressed,
   });
 
+  final IconData iconData;
   final Color backgroundColor;
   final Color? iconColor;
   final bool show;
-  final bool isPlaying;
-  final bool isFinished;
   final VoidCallback? onPressed;
+  final Duration fadeDuration;
+  final double iconSize;
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +28,7 @@ class CenterPlayButton extends StatelessWidget {
         child: UnconstrainedBox(
           child: AnimatedOpacity(
             opacity: show ? 1.0 : 0.0,
-            duration: const Duration(milliseconds: 300),
+            duration: fadeDuration,
             child: DecoratedBox(
               decoration: BoxDecoration(
                 color: backgroundColor,
@@ -36,14 +37,9 @@ class CenterPlayButton extends StatelessWidget {
               // Always set the iconSize on the IconButton, not on the Icon itself:
               // https://github.com/flutter/flutter/issues/52980
               child: IconButton(
-                iconSize: 32,
-                padding: const EdgeInsets.all(12.0),
-                icon: isFinished
-                    ? Icon(Icons.replay, color: iconColor)
-                    : AnimatedPlayPause(
-                        color: iconColor,
-                        playing: isPlaying,
-                      ),
+                iconSize: iconSize,
+                padding: const EdgeInsets.all(8.0),
+                icon: Icon(iconData, color: iconColor),
                 onPressed: onPressed,
               ),
             ),
